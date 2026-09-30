@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0c0e">
+<title>ELEGANCE - WORKOUT ROUTINE</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#090a0c; --panel:#111317; --panel2:#17191e; --steel:#9ba3ad; --steel2:#d9dee4;
+  --line:#3a4048; --line2:#59616c; --text:#e8ebee; --muted:#929aa4; --accent:#c7ccd2;
+  --good:#aeb9a9; --warn:#c4ad8e; --danger:#bd8d8d; --shadow:0 18px 50px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box} html{min-height:100%;background:var(--bg)} body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 50% -10%,#262a30 0,#0d0f12 38%,#07080a 100%);color:var(--text)}
+button,input,select,textarea{font:inherit} button{cursor:pointer}
+#app{min-height:100vh;background:linear-gradient(180deg,rgba(255,255,255,.018),transparent 25%)}
+.shell{width:min(1050px,100%);margin:auto;padding:28px 18px 50px}.topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:22px}.brand{letter-spacing:.16em;font-weight:800;font-size:clamp(1.1rem,3vw,1.55rem)}.sub{color:var(--muted);font-size:.76rem;letter-spacing:.14em;margin-top:5px}.metal{color:var(--steel2);text-shadow:0 1px 0 #000}
+.grid{display:grid;grid-template-columns:1.3fr .7fr;gap:16px}.panel{background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid var(--line);box-shadow:var(--shadow);border-radius:10px;padding:18px}.panel h2,.panel h3{margin:0 0 8px}.eyebrow{font-size:.7rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}.stat{border:1px solid var(--line);background:#0e1013;padding:13px;border-radius:7px}.stat b{display:block;font-size:1.45rem;margin-top:4px}.progress{height:8px;background:#25292e;border:1px solid #353a41;border-radius:99px;overflow:hidden;margin:13px 0 7px}.progress>i{display:block;height:100%;background:linear-gradient(90deg,#68717c,#d1d5da);width:0%;transition:width .3s}.muted{color:var(--muted)}
+.day-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:15px}.day-card{border:1px solid var(--line);background:linear-gradient(145deg,#15181c,#0d0f12);padding:17px;border-radius:8px;text-align:left;min-height:130px;transition:.15s}.day-card:hover{border-color:var(--line2);transform:translateY(-1px)}.day-card b{font-size:1.1rem}.day-card small{display:block;color:var(--muted);margin-top:9px;line-height:1.45}.tag{display:inline-block;border:1px solid var(--line);padding:3px 7px;border-radius:4px;font-size:.66rem;letter-spacing:.08em;color:var(--steel2);margin-top:13px}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.btn{border:1px solid var(--line2);background:#171a1e;color:var(--text);padding:10px 15px;border-radius:6px;font-weight:650}.btn:hover{background:#20242a}.btn.primary{background:#cfd4da;color:#090a0c;border-color:#e1e4e7}.btn.ghost{background:transparent}.btn.danger{border-color:#644747;color:#d3aaaa}
+.screen{display:none}.screen.active{display:block}.hero{border:1px solid var(--line);padding:22px;border-radius:10px;background:linear-gradient(145deg,#181b20,#0d0f12);box-shadow:var(--shadow)}.hero h1{margin:5px 0 7px;font-size:clamp(1.45rem,5vw,2.3rem);letter-spacing:.08em}.hero p{margin:0;color:var(--muted);line-height:1.6}
+.exercise-list{display:grid;gap:10px;margin-top:15px}.exercise{border:1px solid var(--line);background:#0f1114;border-radius:7px;padding:13px;display:grid;grid-template-columns:1fr auto;gap:10px}.exercise b{display:block}.exercise span{color:var(--muted);font-size:.85rem}.exercise .sets{text-align:right;color:var(--steel2);font-weight:700}.fatigue{margin-top:16px}.fatigue-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:13px}.field{display:grid;gap:6px}.field label{font-size:.78rem;color:var(--muted)}input,select,textarea{width:100%;background:#0b0d10;color:var(--text);border:1px solid var(--line2);border-radius:6px;padding:10px;outline:none}input:focus,select:focus,textarea:focus{border-color:#aeb5bd}.range-line{display:flex;justify-content:space-between;color:var(--muted);font-size:.75rem}.slider{padding:0;height:7px}
+.stepbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.stepbar .counter{color:var(--muted);font-size:.8rem}.step{min-height:330px;display:flex;flex-direction:column;justify-content:center}.step h2{font-size:clamp(1.4rem,4vw,2rem);margin:8px 0}.step .detail{font-size:1rem;color:var(--steel2);line-height:1.65}.step .instruction{margin-top:18px;border-left:2px solid var(--line2);padding-left:13px;color:var(--muted);line-height:1.6}.rest{font-variant-numeric:tabular-nums;font-size:3.6rem;font-weight:800;letter-spacing:.05em}.timerbox{border:1px solid var(--line);background:#0c0e11;padding:20px;text-align:center;margin-top:18px;border-radius:8px}.timerbox .btn{margin:4px}
+.prog-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px}.formula{border:1px solid var(--line);background:#0e1013;padding:15px;border-radius:8px;margin-top:13px}.formula strong{display:block;margin-bottom:7px}.result{font-size:1.4rem;font-weight:800;color:var(--steel2);margin-top:8px}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;color:#bcc3cb;line-height:1.55}
+.toast{position:fixed;right:18px;bottom:18px;background:#d3d7dc;color:#08090a;padding:11px 14px;border-radius:6px;box-shadow:var(--shadow);font-weight:700;display:none}.toast.show{display:block}.footer{margin-top:22px;color:#69717b;font-size:.72rem;letter-spacing:.08em;text-align:center}
+@media(max-width:760px){.grid,.prog-layout{grid-template-columns:1fr}.day-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.fatigue-grid{grid-template-columns:1fr}.shell{padding:20px 13px 40px}.topbar{align-items:flex-start}.exercise{grid-template-columns:1fr}.exercise .sets{text-align:left}.step{min-height:290px}}
+</style>
+</head>
+<body>
+<div id="app">
+  <main class="shell">
+    <header class="topbar">
+      <div><div class="brand metal">ELEGANCE - WORKOUT ROUTINE</div><div class="sub">HEMA / HYPERTROPHY / STRENGTH / POWER</div></div>
+      <button class="btn ghost" onclick="showScreen('progress')">PROGRESSION</button>
+    </header>
+
+    <section id="home" class="screen active">
+      <div class="grid">
+        <div class="panel">
+          <div class="eyebrow">Training status</div><h2>Current cycle</h2>
+          <p class="muted">Three planned training days. Tuesday may be replaced by HEMA.</p>
+          <div class="stats">
+            <div class="stat"><span class="muted">This week</span><b id="weekLogged">0 / 3</b></div>
+            <div class="stat"><span class="muted">Total logged</span><b id="totalLogged">0</b></div>
+            <div class="stat"><span class="muted">Last workout</span><b id="lastWorkout">—</b></div>
+          </div>
+          <div class="progress"><i id="weekProgress"></i></div>
+          <div class="muted" id="progressText">0% of planned weekly sessions logged.</div>
+        </div>
+        <div class="panel">
+          <div class="eyebrow">Week counter</div><h2 id="weekDisplay">Week 1</h2>
+          <p class="muted">The progression calculator uses this week number. It has no programmed upper limit.</p>
+          <button class="btn primary" onclick="showScreen('progress')">OPEN PROGRESSION</button>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:16px">
+        <div class="eyebrow">Session selection</div><h2>Select training day</h2>
+        <div class="day-grid">
+          <button class="day-card" onclick="openDay('sunday')"><b>SUNDAY</b><small>Power + lower strength + V-taper</small><span class="tag">GYM A</span></button>
+          <button class="day-card" onclick="openDay('tuesday')"><b>TUESDAY</b><small>HEMA, or upper body + V-taper when HEMA is not scheduled</small><span class="tag">HEMA / GYM B</span></button>
+          <button class="day-card" onclick="openDay('thursday')"><b>THURSDAY</b><small>Full body + unilateral strength + aesthetic work</small><span class="tag">GYM C</span></button>
+        </div>
+      </div>
+      <div class="footer">LOCAL DATA STORAGE ACTIVE</div>
+    </section>
+
+    <section id="dayOverview" class="screen">
+      <div class="hero"><div class="eyebrow" id="dayEyebrow"></div><h1 id="dayTitle"></h1><p id="dayGoal"></p></div>
+      <div class="panel" style="margin-top:16px"><div class="eyebrow">Session menu</div><div class="btnrow"><button class="btn primary" onclick="confirmDay('gym')">WORKOUT</button><button class="btn" id="hemaConfirmBtn" onclick="confirmDay('hema')" style="display:none">CONFIRM HEMA</button><button class="btn" onclick="showFatigue(true)">FATIGUE MANAGEMENT</button><button class="btn ghost" onclick="showScreen('home')">BACK</button></div></div>
+      <div class="panel" style="margin-top:16px"><div class="eyebrow">Exercise sequence</div><div id="overviewExercises" class="exercise-list"></div></div>
+    </section>
+
+    <section id="workout" class="screen">
+      <div class="stepbar"><button class="btn ghost" onclick="backFromWorkout()">BACK</button><span class="counter" id="stepCounter"></span></div>
+      <div class="panel step" id="stepContent"></div>
+      <div class="btnrow"><button class="btn" id="continueBtn" onclick="nextStep()">CONTINUE</button></div>
+    </section>
+
+    <section id="fatigue" class="screen">
+      <div class="panel">
+        <div class="eyebrow">Fatigue management</div><h2 id="fatigueTitle">Post-session assessment</h2>
+        <p class="muted">Record the session state. This is stored locally and can guide your next adjustment.</p>
+        <div class="fatigue-grid">
+          <div class="field"><label>Overall fatigue (1–10)</label><input id="fatigueScore" type="number" min="1" max="10" value="5"></div>
+          <div class="field"><label>Muscle soreness (1–10)</label><input id="sorenessScore" type="number" min="1" max="10" value="3"></div>
+          <div class="field"><label>Energy after training (1–10)</label><input id="energyScore" type="number" min="1" max="10" value="7"></div>
+          <div class="field"><label>Technique quality (1–10)</label><input id="techniqueScore" type="number" min="1" max="10" value="8"></div>
+        </div>
+        <div class="field" style="margin-top:12px"><label>Notes</label><textarea id="fatigueNotes" rows="4" placeholder="Soreness, unusual fatigue, exercise substitutions, HEMA load, etc."></textarea></div>
+        <div class="btnrow"><button class="btn primary" onclick="finishWorkout()">SAVE SESSION</button><button class="btn ghost" onclick="showScreen('home')">CANCEL</button></div>
+      </div>
+    </section>
+
+    <section id="progress" class="screen">
+      <div class="stepbar"><button class="btn ghost" onclick="showScreen('home')">BACK</button><span class="counter">LOAD / REP PROGRESSION</span></div>
+      <div class="prog-layout">
+        <div class="panel">
+          <div class="eyebrow">Week selector</div><h2>Infinite progression</h2>
+          <div class="field" style="margin-top:14px"><label>Week</label><input id="progWeek" type="number" min="1" step="1" value="1" oninput="calcProgression()"></div>
+          <div class="field" style="margin-top:12px"><label>Exercise</label><select id="progExercise" onchange="loadExercisePreset();calcProgression()"></select></div>
+          <div class="field" style="margin-top:12px"><label>Starting load (kg)</label><input id="baseLoad" type="number" min="0" step="0.5" value="20" oninput="calcProgression()"></div>
+          <div class="field" style="margin-top:12px"><label>Starting reps</label><input id="baseReps" type="number" min="1" step="1" value="8" oninput="calcProgression()"></div>
+          <div class="btnrow"><button class="btn" onclick="saveProgressionDefaults()">SAVE DEFAULTS</button><button class="btn ghost" onclick="resetProgression()">RESET</button></div>
+        </div>
+        <div class="panel">
+          <div class="eyebrow">Calculated target</div><h2 id="formulaExercise">—</h2>
+          <div class="formula"><strong>Week logic</strong><div class="code" id="formulaText"></div><div class="result" id="formulaResult">—</div></div>
+          <div class="formula"><strong>Cycle</strong><div id="cycleText" class="muted"></div></div>
+          <div class="formula"><strong>Saved week</strong><div id="savedWeekText" class="muted"></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="toast" class="toast"></div>
+</div>
+<script>
+const DATA={
+ sunday:{title:'SUNDAY — POWER + LOWER STRENGTH + V-TAPER',goal:'Develop lower-body force and explosive output for HEMA while prioritising the V-taper and upper-body aesthetic.',items:[
+  {name:'Warm-up',detail:'3–5 min easy movement. Add 1–3 lighter preparation sets before the first major lift.',kind:'warmup'},
+  {name:'Broad Jump',detail:'2 × 3. Maximal explosive effort. 2–3 min rest. Stop if speed or landing quality drops.',kind:'power'},
+  {name:'Leg Press',detail:'3 × 5–8 @ RPE 7–8. Rest 2–3 min.',kind:'exercise'},
+  {name:'Romanian Deadlift',detail:'2 × 6–10 @ RPE 7. Rest 2–3 min. Controlled eccentric.',kind:'exercise'},
+  {name:'Neutral-Grip Lat Pulldown',detail:'3 × 6–10 @ RPE 7–8. Rest 2 min.',kind:'exercise'},
+  {name:'Incline Dumbbell Bench Press',detail:'2 × 6–10 @ RPE 7–8. Rest 2 min.',kind:'exercise'},
+  {name:'Cable Lateral Raise',detail:'3 × 12–20 @ RPE 8. Rest 60–90 sec.',kind:'exercise'},
+  {name:'Reverse Pec Deck',detail:'2 × 12–20 @ RPE 8. Rest 60–90 sec.',kind:'exercise'},
+  {name:'Cable Crunch',detail:'2 × 10–15 @ RPE 8. Rest 60–90 sec.',kind:'exercise'}]},
+ tuesday:{title:'TUESDAY — HEMA / UPPER BODY + V-TAPER',goal:'HEMA replaces the gym session when scheduled. Otherwise build upper-body strength and the shoulder/back silhouette.',items:[
+  {name:'HEMA Session',detail:'If HEMA is scheduled, this replaces Gym B. No additional gym sequence is required.',kind:'hema'},
+  {name:'Incline Dumbbell Bench Press',detail:'3 × 5–8 @ RPE 7–8. Rest 2–3 min.',kind:'exercise'},
+  {name:'Chest-Supported Row',detail:'3 × 6–10 @ RPE 7–8. Rest 2 min.',kind:'exercise'},
+  {name:'Neutral-Grip Lat Pulldown',detail:'2 × 8–12 @ RPE 8. Rest 2 min.',kind:'exercise'},
+  {name:'Cable Lateral Raise',detail:'3 × 12–20 @ RPE 8. Rest 60–90 sec.',kind:'exercise'},
+  {name:'Reverse Pec Deck',detail:'2 × 12–20 @ RPE 8. Rest 60–90 sec.',kind:'exercise'},
+  {name:'Incline Dumbbell Curl',detail:'2 × 10–15 @ RPE 8. Rest 60–90 sec.',kind:'exercise'},
+  {name:'Overhead Cable Triceps Extension',detail:'2 × 10–15 @ RPE 8. Rest 60–90 sec.',kind:'exercise'},
+  {name:'Pallof Press',detail:'2 × 8–12 / side. Controlled anti-rotation.',kind:'exercise'}]},
+ thursday:{title:'THURSDAY — FULL BODY + UNILATERAL STRENGTH',goal:'Build unilateral lower-body capacity, pulling strength, pushing strength and the aesthetic priorities without excessive lower-body volume.',items:[
+  {name:'Warm-up',detail:'3–5 min easy movement. Prepare hips, knees, shoulders and the first loaded movement.',kind:'warmup'},
+  {name:'Lateral Bound',detail:'2 × 3 / side. Explosive, high-quality reps. 2–3 min rest. Introduce gradually.',kind:'power'},
+  {name:'Reverse Lunge',detail:'2 × 6–10 / side @ RPE 7. Rest 2 min.',kind:'exercise'},
+  {name:'Seated Hamstring Curl',detail:'2 × 10–15 @ RPE 7–8. Rest 90–120 sec.',kind:'exercise'},
+  {name:'Chest-Supported Row',detail:'3 × 6–10 @ RPE 7–8. Rest 2 min.',kind:'exercise'},
+  {name:'Neutral-Grip Lat Pulldown',detail:'2 × 8–12 @ RPE 8. Rest 2 min.',kind:'exercise'},
+  {name:'Incline Dumbbell Bench Press',detail:'2 × 8–12 @ RPE 8. Rest 2 min.',kind:'exercise'},
+  {name:'Cable Lateral Raise',detail:'3 × 12–20 @ RPE 8. Rest 60–90 sec.',kind:'exercise'},
+  {name:'Incline Dumbbell Curl',detail:'2 × 10–15 @ RPE 8. Rest 60–90 sec.',kind:'exercise'},
+  {name:'Overhead Cable Triceps Extension',detail:'2 × 10–15 @ RPE 8. Rest 60–90 sec.',kind:'exercise'}]}
+};
+const EXERCISES=[
+ ['Leg Press',5,8,2.5],['Romanian Deadlift',6,10,2.5],['Neutral-Grip Lat Pulldown',6,10,2.5],['Incline Dumbbell Bench Press',6,10,2.5],['Cable Lateral Raise',12,20,2.5],['Reverse Pec Deck',12,20,2.5],['Cable Crunch',10,15,2.5],['Chest-Supported Row',6,10,2.5],['Incline Dumbbell Curl',10,15,2.5],['Overhead Cable Triceps Extension',10,15,2.5],['Pallof Press',8,12,2.5],['Reverse Lunge',6,10,2.5],['Seated Hamstring Curl',10,15,2.5]
+];
+let state=JSON.parse(localStorage.getItem('eleganceState')||'null')||{logs:[],week:1,progression:{}};
+let currentDay=null,currentStep=0,currentMode='gym';
+function save(){localStorage.setItem('eleganceState',JSON.stringify(state));updateHome();}
+function showScreen(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='home')updateHome();if(id==='progress'){document.getElementById('progWeek').value=state.week;loadExerciseOptions();calcProgression();}}
+function dateKey(d=new Date()){return d.toISOString().slice(0,10)}
+function weekStart(d=new Date()){const x=new Date(d);const day=(x.getDay()+6)%7;x.setDate(x.getDate()-day);x.setHours(0,0,0,0);return x}
+function updateHome(){const start=weekStart();const count=state.logs.filter(l=>new Date(l.date)>=start).length;document.getElementById('weekLogged').textContent=count+' / 3';document.getElementById('totalLogged').textContent=state.logs.length;const last=state.logs[state.logs.length-1];document.getElementById('lastWorkout').textContent=last?last.label:'—';const pct=Math.min(100,count/3*100);document.getElementById('weekProgress').style.width=pct+'%';document.getElementById('progressText').textContent=Math.round(pct)+'% of planned weekly sessions logged.';document.getElementById('weekDisplay').textContent='Week '+state.week}
+function openDay(day){currentDay=day;currentMode=day==='tuesday'?'gym':'gym';document.getElementById('dayEyebrow').textContent=day.toUpperCase();document.getElementById('dayTitle').textContent=DATA[day].title;document.getElementById('dayGoal').textContent=DATA[day].goal;document.getElementById('hemaConfirmBtn').style.display=day==='tuesday'?'inline-block':'none';document.getElementById('overviewExercises').innerHTML=DATA[day].items.filter(x=>day!=='tuesday'||x.kind!=='hema').map((x,i)=>`<div class="exercise"><div><b>${i+1}. ${x.name}</b><span>${x.detail}</span></div><div class="sets">${x.kind==='power'?'POWER':x.kind==='warmup'?'PREP':x.kind==='hema'?'OPTION':''}</div></div>`).join('');showScreen('dayOverview')}
+function confirmDay(mode){currentMode=mode;currentStep=0;showScreen('workout');renderStep()}
+function startWorkout(){confirmDay('gym')}
+function renderStep(){const all=DATA[currentDay].items;const items=(currentDay==='tuesday'&&currentMode==='hema')?[all[0]]:all.filter(x=>x.kind!=='hema');const item=items[currentStep];document.getElementById('stepCounter').textContent=`STEP ${currentStep+1} / ${items.length}`;document.getElementById('stepContent').innerHTML=`<div class="eyebrow">${item.kind.toUpperCase()}</div><h2>${item.name}</h2><div class="detail">${item.detail}</div>${item.kind==='power'?'<div class="instruction">Explosive intent. Quality is the limiter. Do not turn power work into conditioning.</div>':''}${item.kind==='exercise'?'<div class="instruction">Use a controlled full ROM where comfortable. Record the load and reps in your usual tracker if desired.</div>':''}`;const rest=(item.kind==='power'?150:item.kind==='exercise'?(item.detail.includes('2–3 min')?150:(item.detail.includes('2 min')?120:90)):0);document.getElementById('stepContent').insertAdjacentHTML('beforeend',rest?`<div class="timerbox"><div class="muted">Suggested rest</div><div class="rest" id="restTimer">${fmt(rest)}</div><button class="btn" onclick="startRest(${rest})">START REST TIMER</button><button class="btn ghost" onclick="stopRest()">STOP</button></div>`:'');document.getElementById('continueBtn').textContent=currentStep===items.length-1?'CONTINUE TO FATIGUE':'CONTINUE'}
+function nextStep(){stopRest();const items=(currentDay==='tuesday'&&currentMode==='hema')?[DATA[currentDay].items[0]]:DATA[currentDay].items.filter(x=>x.kind!=='hema');if(currentStep<items.length-1){currentStep++;renderStep()}else showFatigue(false)}
+let restInterval=null;function fmt(s){return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}function startRest(seconds){stopRest();let left=seconds;const e=document.getElementById('restTimer');if(!e)return;e.textContent=fmt(left);restInterval=setInterval(()=>{left--;e.textContent=fmt(Math.max(0,left));if(left<=0){clearInterval(restInterval);restInterval=null;toast('REST COMPLETE')}},1000)}function stopRest(){if(restInterval){clearInterval(restInterval);restInterval=null}}
+function backFromWorkout(){stopRest();if(currentStep>0){currentStep--;renderStep()}else showScreen('dayOverview')}
+function showFatigue(fromMenu){document.getElementById('fatigueTitle').textContent=DATA[currentDay].title+' — FATIGUE MANAGEMENT';showScreen('fatigue')}
+function finishWorkout(){const log={date:new Date().toISOString(),day:currentDay,label:currentDay.toUpperCase(),fatigue:+document.getElementById('fatigueScore').value,soreness:+document.getElementById('sorenessScore').value,energy:+document.getElementById('energyScore').value,technique:+document.getElementById('techniqueScore').value,notes:document.getElementById('fatigueNotes').value};state.logs.push(log);save();toast('SESSION SAVED');showScreen('home')}
+function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1800)}
+function loadExerciseOptions(){const s=document.getElementById('progExercise');const current=s.value||EXERCISES[0][0];s.innerHTML=EXERCISES.map(x=>`<option>${x[0]}</option>`).join('');s.value=current;if(!s.value)s.value=EXERCISES[0][0]}
+function loadExercisePreset(){const name=document.getElementById('progExercise').value;const saved=state.progression[name];if(saved){document.getElementById('baseLoad').value=saved.load;document.getElementById('baseReps').value=saved.reps;}}
+function calcProgression(){const week=Math.max(1,Math.floor(+document.getElementById('progWeek').value||1));const name=document.getElementById('progExercise').value||EXERCISES[0][0];const meta=EXERCISES.find(x=>x[0]===name)||EXERCISES[0];const min=meta[1],max=meta[2],inc=meta[3];const load=Math.max(0,+document.getElementById('baseLoad').value||0);const startReps=Math.min(max,Math.max(min,+document.getElementById('baseReps').value||min));const cycleLen=max-min+1;const cycle=Math.floor((week-1)/cycleLen);const pos=(week-1)%cycleLen;const reps=Math.min(max,Math.max(min,startReps+pos));const targetLoad=load*Math.pow(1+inc/100,cycle);document.getElementById('formulaExercise').textContent=name;document.getElementById('formulaText').textContent=`Weeks 1–${cycleLen}: add one rep per week within the exercise range. Every ${cycleLen} weeks: reset reps to the starting point and increase load by ${inc}%. Week ${week}: cycle ${cycle+1}, position ${pos+1}.`;document.getElementById('formulaResult').textContent=`${targetLoad.toFixed(1)} kg × ${reps} reps`;document.getElementById('cycleText').textContent=`Cycle ${cycle+1}. Load multiplier: ${(Math.pow(1+inc/100,cycle)).toFixed(3)}× baseline.`;document.getElementById('savedWeekText').textContent=`Week ${state.week}. Saving this week updates the dashboard counter.`}
+function saveProgressionDefaults(){const name=document.getElementById('progExercise').value;state.progression[name]={load:+document.getElementById('baseLoad').value||0,reps:+document.getElementById('baseReps').value||1};state.week=Math.max(1,Math.floor(+document.getElementById('progWeek').value||1));save();toast('PROGRESSION SAVED');calcProgression()}
+function resetProgression(){state.week=1;state.progression={};save();document.getElementById('progWeek').value=1;document.getElementById('baseLoad').value=20;document.getElementById('baseReps').value=8;calcProgression();toast('PROGRESSION RESET')}
+loadExerciseOptions();updateHome();calcProgression();
+</script>
+</body>
+</html>
